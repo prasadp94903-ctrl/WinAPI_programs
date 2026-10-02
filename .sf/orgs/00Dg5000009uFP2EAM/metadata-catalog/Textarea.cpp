@@ -29,7 +29,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
     w.hIcon = LoadIcon(nullptr, IDI_APPLICATION);
     w.hIconSm = LoadIcon(nullptr, IDI_APPLICATION);
     w.hbrBackground = (HBRUSH)(COLOR_WINDOW + 1);
-    w.lpszClassName = "My Window";
+    w.lpszClassName = "SIVA";
     w.lpszMenuName = nullptr;
 
     if (!RegisterClassEx(&w))
@@ -40,8 +40,8 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 
     HWND hWnd = CreateWindowEx(
         0,
-        "My Window",
-        "My class",
+        "SIVA",
+        "HELLO",
         WS_OVERLAPPEDWINDOW,
         CW_USEDEFAULT, CW_USEDEFAULT,
         800, 600,
