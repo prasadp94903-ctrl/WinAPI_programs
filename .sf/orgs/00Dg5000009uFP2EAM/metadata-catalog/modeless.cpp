@@ -1,5 +1,31 @@
-#include<Windows.h>
-#include"resource.h"
+#include <Windows.h>
+
+#if defined(__has_include)
+#  if __has_include("resource.h")
+#    include "resource.h"
+#  else
+#    define IDR_MENU1 100
+#    define IDD_DIALOG1 101
+#    define IDD_DIALOG2 102
+#    define ID_MODAL_WIN32MODAL 40001
+#    define ID_FILE_NEW 40002
+#    define ID_FILE_OPEN 40003
+#    define ID_NEW_CREATE 40004
+#    define ID_FILE_SAVE 40005
+#    define ID_FILE_SAVEAS 40006
+#    define ID_FILE_UNDO 40007
+#    define ID_FILE_READ 40008
+#    define ID_FILE_HELP 40009
+#    define ID_NEW_OPEN 40010
+#    define ID_CREATE_NEWPROJECT 40011
+#    define ID_DAILOGBOX_MODAL 40012
+#    define ID_DAILOGBOX_MODELESS 40013
+#    define ID_MODELESS_WIN32MODELES 40014
+#  endif
+#else
+#  include "resource.h"
+#endif
+
 HWND hModelessDlg = NULL;
 INT_PTR CALLBACK  ModelessDlgProc(HWND hdlg, UINT msgid, WPARAM wParam, LPARAM lParam)
 {
