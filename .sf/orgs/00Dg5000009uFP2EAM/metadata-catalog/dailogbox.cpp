@@ -1,5 +1,26 @@
-#include<Windows.h>
-#include"resource.h"
+#include <Windows.h>
+
+#if __has_include("resource.h")
+#include "resource.h"
+#else
+#define IDR_MENU1 101
+#define IDD_DIALOG1 102
+#define ID_MODAL_WIN32MODAL 1001
+#define ID_FILE_NEW 2001
+#define ID_FILE_OPEN 2002
+#define ID_NEW_CREATE 2003
+#define ID_FILE_SAVE 2004
+#define ID_FILE_SAVEAS 2005
+#define ID_FILE_UNDO 2006
+#define ID_FILE_READ 2007
+#define ID_FILE_HELP 2008
+#define ID_NEW_OPEN 2009
+#define ID_CREATE_NEWPROJECT 2010
+#define ID_DAILOGBOX_MODAL 2011
+#define ID_DAILOGBOX_MODELESS 2012
+#define ID_MODELESS_WIN32MODELES 2013
+#endif
+
 INT_PTR CALLBACK  ModalDlgProc(HWND hdlg, UINT msgid, WPARAM wParam, LPARAM lParam)
 {
     switch (msgid)
@@ -8,11 +29,11 @@ INT_PTR CALLBACK  ModalDlgProc(HWND hdlg, UINT msgid, WPARAM wParam, LPARAM lPar
         switch (LOWORD(wParam))
         {
         case IDOK:
-            MessageBox(NULL, L" OK BUTTON clicked", L" OK", MB_OK | MB_ICONINFORMATION);
+            MessageBox(NULL, " OK BUTTON clicked", " OK", MB_OK | MB_ICONINFORMATION);
             EndDialog(hdlg, 0);
             break;
         case IDCANCEL:
-            MessageBox(NULL, L" CANCEL BUTTON clicked", L" CANCEL", MB_OK | MB_ICONINFORMATION);
+            MessageBox(NULL, " CANCEL BUTTON clicked", " CANCEL", MB_OK | MB_ICONINFORMATION);
             EndDialog(hdlg, 0);
             break;
 
@@ -38,44 +59,44 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT msgid, WPARAM wParam, LPARAM lParam)
             DialogBox(GetModuleHandle(NULL), MAKEINTRESOURCE(IDD_DIALOG1), hWnd, ModalDlgProc);
             break;
         case  ID_FILE_NEW:
-            MessageBox(hWnd, L" File NEW", L"New", MB_OK | MB_ICONINFORMATION);
+            MessageBox(hWnd, " File NEW", "New", MB_OK | MB_ICONINFORMATION);
             break;
         case ID_FILE_OPEN:
-            MessageBox(hWnd, L" FIle open", L"open ", MB_OK | MB_ICONINFORMATION);
+            MessageBox(hWnd, " FIle open", "open ", MB_OK | MB_ICONINFORMATION);
             break;
         case ID_NEW_CREATE:
-            MessageBox(hWnd, L" new create", L"create ", MB_OK | MB_ICONINFORMATION);
+            MessageBox(hWnd, " new create", "create ", MB_OK | MB_ICONINFORMATION);
             break;
         case ID_FILE_SAVE:
-            MessageBox(hWnd, L" new save", L"save ", MB_OK | MB_ICONINFORMATION);
+            MessageBox(hWnd, " new save", "save ", MB_OK | MB_ICONINFORMATION);
             break;
         case ID_FILE_SAVEAS:
-            MessageBox(hWnd, L" Save as", L"saveas ", MB_OK | MB_ICONINFORMATION);
+            MessageBox(hWnd, " Save as", "saveas ", MB_OK | MB_ICONINFORMATION);
             break;
         case ID_FILE_UNDO:
-            MessageBox(hWnd, L" file undo", L"Undo ", MB_OK | MB_ICONINFORMATION);
+            MessageBox(hWnd, " file undo", "Undo ", MB_OK | MB_ICONINFORMATION);
             break;
         case ID_FILE_READ:
-            MessageBox(hWnd, L" newread", L"read ", MB_OK | MB_ICONINFORMATION);
+            MessageBox(hWnd, " newread", "read ", MB_OK | MB_ICONINFORMATION);
             break;
         case ID_FILE_HELP:
-            MessageBox(hWnd, L" new help", L"help ", MB_OK | MB_ICONINFORMATION);
+            MessageBox(hWnd, " new help", "help ", MB_OK | MB_ICONINFORMATION);
             break;
         case ID_NEW_OPEN:
-            MessageBox(hWnd, L" new open", L"newopen ", MB_OK | MB_ICONINFORMATION);
+            MessageBox(hWnd, " new open", "newopen ", MB_OK | MB_ICONINFORMATION);
             break;
         case ID_CREATE_NEWPROJECT:
-            MessageBox(hWnd, L" newproject", L"NEWPROJECT ", MB_OK | MB_ICONINFORMATION);
+            MessageBox(hWnd, " newproject", "NEWPROJECT ", MB_OK | MB_ICONINFORMATION);
             break;
         case ID_DAILOGBOX_MODAL:
-            MessageBox(hWnd, L" DAILOGBOX", L"DAILOGBOX ", MB_OK | MB_ICONINFORMATION);
+            MessageBox(hWnd, " DAILOGBOX", "DAILOGBOX ", MB_OK | MB_ICONINFORMATION);
             break;
         case ID_DAILOGBOX_MODELESS:
-            MessageBox(hWnd, L" DAILOGBOXMODELES", L"MODELES ", MB_OK | MB_ICONINFORMATION);
+            MessageBox(hWnd, " DAILOGBOXMODELES", "MODELES ", MB_OK | MB_ICONINFORMATION);
             break;
         
         case ID_MODELESS_WIN32MODELES:
-            MessageBox(hWnd, L" MODELES", L"Modelsss ", MB_OK | MB_ICONINFORMATION);
+            MessageBox(hWnd, " MODELES", "Modelsss ", MB_OK | MB_ICONINFORMATION);
             break;
         }
         break;
@@ -95,7 +116,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
     WNDCLASSEX w = {};
     w.cbSize = sizeof(WNDCLASSEX);
     w.hInstance = hInstance;
-    w.lpszClassName = L"SIVA";
+    w.lpszClassName = "SIVA";
     w.cbClsExtra = 0;  // Fixed NULL issue
     w.cbWndExtra = 0;  // Fixed NULL issue
     w.hbrBackground = (HBRUSH)GetStockObject(WHITE_BRUSH);
@@ -108,18 +129,18 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 
     if (!RegisterClassEx(&w))
     {
-        MessageBox(NULL, L"Window registration failed!", L"ERROR", MB_ICONERROR);
+        MessageBox(NULL, "Window registration failed!", "ERROR", MB_ICONERROR);
         return 0;
     }
 
     HWND hWnd = CreateWindowEx(
-        0, L"SIVA", L"HELLO", WS_OVERLAPPEDWINDOW,
+        0, "SIVA", "HELLO", WS_OVERLAPPEDWINDOW,
         CW_USEDEFAULT, CW_USEDEFAULT, 500, 400,  // Fixed width & height
         NULL, NULL, hInstance, NULL);
 
     if (!hWnd)
     {
-        MessageBox(NULL, L"Window creation failed!", L"ERROR", MB_ICONERROR);
+        MessageBox(NULL, "Window creation failed!", "ERROR", MB_ICONERROR);
         return 0;
     }
 
